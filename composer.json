@@ -1,0 +1,42 @@
+{
+  "name": "talentify/php-value-objects",
+  "description": "Provides some value objects.",
+  "type": "library",
+  "license": "lgpl-3.0",
+  "homepage": "https://github.com/talentify/php-value-objects",
+  "keywords": [
+    "value-objects"
+  ],
+  "require": {
+    "php": "^7.1.0",
+    "ext-mbstring": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Tfy\\ValueObject\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tfy\\ValueObject\\": "tests/"
+    }
+  },
+  "config": {
+    "preferred-install": {
+      "*": "dist"
+    },
+    "sort-packages": true
+  },
+  "scripts": {
+    "phpunit": "phpunit",
+    "test": [
+      "@phpunit"
+    ]
+  },
+  "scripts-descriptions": {
+    "test": "Run tests"
+  }
+}
