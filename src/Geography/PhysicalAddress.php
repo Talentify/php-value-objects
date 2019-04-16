@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tfy\ValueObject\Geography;
+namespace Talentify\ValueObject\Geography;
 
 /**
  * A physical address in only the location i.e. the address without name and company name.

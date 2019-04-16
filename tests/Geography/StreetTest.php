@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tfy\ValueObject\Geography;
+namespace Talentify\ValueObject\Geography;
 
 use PHPUnit\Framework\TestCase;
 

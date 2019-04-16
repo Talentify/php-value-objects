@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tfy\ValueObject\Geography;
+namespace Talentify\ValueObject\Geography;
 
-use Tfy\ValueObject\ValueObject;
+use Talentify\ValueObject\ValueObject;
 
 /**
  * @see https://en.wikipedia.org/wiki/Street_or_road_name

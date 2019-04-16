@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Tfy\ValueObject\Geography;
+namespace Talentify\ValueObject\Geography;
 
 /**
  * Represents the base structure for a physical address.
  */
 abstract class BasePhysicalAddress implements PhysicalAddress
 {
-    /** @var \Tfy\ValueObject\Geography\Street */
+    /** @var \Talentify\ValueObject\Geography\Street */
     protected $street;
-    /** @var \Tfy\ValueObject\Geography\District */
+    /** @var \Talentify\ValueObject\Geography\District */
     protected $district;
-    /** @var \Tfy\ValueObject\Geography\City */
+    /** @var \Talentify\ValueObject\Geography\City */
     protected $city;
-    /** @var \Tfy\ValueObject\Geography\Region */
+    /** @var \Talentify\ValueObject\Geography\Region */
     protected $region;
-    /** @var \Tfy\ValueObject\Geography\Country */
+    /** @var \Talentify\ValueObject\Geography\Country */
     protected $county;
 
     public function __construct(

@@ -16,12 +16,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Tfy\\ValueObject\\": "src/"
+      "Talentify\\ValueObject\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Tfy\\ValueObject\\": "tests/"
+      "Talentify\\ValueObject\\": "tests/"
     }
   },
   "config": {

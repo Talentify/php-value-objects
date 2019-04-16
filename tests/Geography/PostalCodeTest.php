@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tfy\ValueObject\Geography;
+namespace Talentify\ValueObject\Geography;
 
-use Tfy\ValueObject\ValueObjectTestCase;
+use Talentify\ValueObject\ValueObjectTestCase;
 
 class PostalCodeTest extends ValueObjectTestCase
 {

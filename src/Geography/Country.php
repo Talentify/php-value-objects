@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tfy\ValueObject\Geography;
+namespace Talentify\ValueObject\Geography;
 
-use Tfy\ValueObject\StringUtils;
-use Tfy\ValueObject\ValueObject;
+use Talentify\ValueObject\StringUtils;
+use Talentify\ValueObject\ValueObject;
 
 class Country implements ValueObject
 {
