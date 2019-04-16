@@ -1,4 +1,6 @@
-composer.phar
-.composer/
 vendor/
+composer.phar
 .idea/
+# from docker
+.composer/
+.bash_history

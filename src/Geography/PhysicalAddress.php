@@ -8,7 +8,7 @@ namespace Talentify\ValueObject\Geography;
  * A physical address in only the location i.e. the address without name and company name.
  * @see https://en.wikipedia.org/wiki/Address#Address_format
  */
-interface PhysicalAddress
+interface PhysicalAddress extends Address
 {
     public function getStreet() : ?Street;
 
@@ -18,5 +18,5 @@ interface PhysicalAddress
 
     public function getRegion() : ?Region;
 
-    public function getCounty() : ?Country;
+    public function getCountry() : ?Country;
 }

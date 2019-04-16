@@ -12,15 +12,34 @@ use PHPUnit\Framework\TestCase;
 abstract class ValueObjectTestCase extends TestCase
 {
     /**
+     * @param object|string|array $param
+     */
+    public function instantiateValueObject($param)
+    {
+        if (\is_object($param)) {
+            return $param;
+        }
+
+        $reflection = new \ReflectionClass(static::getClassName());
+
+        $param = \is_array($param) ? $param : [$param];
+
+        $instance = $reflection->newInstanceArgs($param);
+        \assert($instance instanceof ValueObject);
+
+        return $instance;
+    }
+
+    /**
+     * @param string|object $first
+     * @param string|object $second
+     *
      * @dataProvider sameValueDataProvider
      */
-    public function testMustBeEqual(string $first, string $second) : void
+    public function testMustBeEqual($first, $second) : void
     {
-        $class = static::getClassName();
-
-        $object1 = new $class($first);
-        \assert($object1 instanceof ValueObject);
-        $object2 = new $class($second);
+        $object1 = $this->instantiateValueObject($first);
+        $object2 = $this->instantiateValueObject($second);
 
         $this->assertTrue(
             $object1->equals($object2),
@@ -29,15 +48,15 @@ abstract class ValueObjectTestCase extends TestCase
     }
 
     /**
+     * @param string|object $first
+     * @param string|object $second
+     *
      * @dataProvider differentValueDataProvider
      */
-    public function testMustNotBeEqual(string $first, $second) : void
+    public function testMustNotBeEqual($first, $second) : void
     {
-        $class = static::getClassName();
-
-        $object1 = new $class($first);
-        \assert($object1 instanceof ValueObject);
-        $object2 = new $class($second);
+        $object1 = $this->instantiateValueObject($first);
+        $object2 = $this->instantiateValueObject($second);
 
         $this->assertFalse(
             $object1->equals($object2),
@@ -46,10 +65,13 @@ abstract class ValueObjectTestCase extends TestCase
     }
 
     /**
+     * @param string|object $invalidValue
+     * @param string|null $exceptionMessage
+     *
      * @dataProvider invalidValueDataProvider
      */
     public function testWillThrownExceptionOnInvalidValue(
-        string $invalidValue,
+        $invalidValue,
         ?string $exceptionMessage
     ) : void {
         $this->expectException(\InvalidArgumentException::class);
@@ -58,20 +80,18 @@ abstract class ValueObjectTestCase extends TestCase
             $this->expectExceptionMessage($exceptionMessage);
         }
 
-        $class = static::getClassName();
-
-        new $class($invalidValue);
+        $this->instantiateValueObject($invalidValue);
     }
 
     /**
+     * @param string|object $first
+     * @param string|object $second
+     *
      * @dataProvider sameValueDataProvider
      */
-    public function testWillBeCastedToString(string $first, string $second) : void
+    public function testWillBeCastedToString($first, $second) : void
     {
-        $class = static::getClassName();
-
-        $object1 = new $class($first);
-        \assert($object1 instanceof ValueObject);
+        $object1 = $this->instantiateValueObject($first);
 
         $this->assertEquals(
             (string)$object1,

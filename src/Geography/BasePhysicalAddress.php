@@ -54,8 +54,18 @@ abstract class BasePhysicalAddress implements PhysicalAddress
         return $this->region;
     }
 
-    public function getCounty() : ?Country
+    public function getCountry() : ?Country
     {
         return $this->county;
+    }
+
+    public function getAddress() : string
+    {
+        return '';
+    }
+
+    public function __toString()
+    {
+        return '';
     }
 }
