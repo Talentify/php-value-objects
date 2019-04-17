@@ -13,7 +13,7 @@ class StringUtilsTest extends TestCase
      */
     public function testMustRemoveWhitespace(string $input, string $expected) : void
     {
-        $output = StringUtils::trimSpaces($input);
+        $output = StringUtils::trimSpacesWisely($input);
 
         $this->assertEquals(
             $output,

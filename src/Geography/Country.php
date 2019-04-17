@@ -4,26 +4,32 @@ declare(strict_types=1);
 
 namespace Talentify\ValueObject\Geography;
 
+use InvalidArgumentException;
 use Talentify\ValueObject\StringUtils;
 use Talentify\ValueObject\ValueObject;
+use function strlen;
 
 class Country implements ValueObject
 {
     /** @var string */
     private $name;
-    /** @var string */
+    /** @var string|null */
     private $isoAlpha2;
-    /** @var string */
+    /** @var string|null */
     private $isoAlpha3;
 
     /**
+     * @param string $isoAlpha2 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+     * @param string $isoAlpha3 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
+     *
      * @throws \InvalidArgumentException if supplied value is invalid.
+     *
      * @see https://en.wikipedia.org/wiki/ISO_3166-1
      */
     public function __construct(
         string $name,
-        string $isoAlpha2,
-        string $isoAlpha3
+        ?string $isoAlpha2 = null,
+        ?string $isoAlpha3 = null
     ) {
         $this->setName($name);
         $this->setIsoAlpha2($isoAlpha2);
@@ -32,9 +38,9 @@ class Country implements ValueObject
 
     private function setName(string $name) : void
     {
-        $normalized = StringUtils::trimSpaces($name);
+        $normalized = StringUtils::trimSpacesWisely($name);
         if (empty($normalized)) {
-            throw new \InvalidArgumentException(sprintf('The value "%s" is not a valid country name.', $name));
+            throw new InvalidArgumentException(sprintf('The value "%s" is not a valid country name.', $name));
         }
 
         $this->name = StringUtils::convertCaseToTitle($normalized);
@@ -45,14 +51,20 @@ class Country implements ValueObject
         return $this->name;
     }
 
-    private function setIsoAlpha2(string $value) : void
+    private function setIsoAlpha2(?string $value) : void
     {
-        $normalized = StringUtils::trimSpaces($value);
-        if (empty($normalized) || \strlen($normalized) !== 2) {
-            throw new \InvalidArgumentException(sprintf('The value "%s" is not a valid ISO 3166-1 alpha 2.', $value));
+        if ($value === null) {
+            return;
         }
 
-        $this->isoAlpha2 = mb_convert_case($value, MB_CASE_UPPER, 'UTF-8');
+        $normalized = StringUtils::removeSpaces($value);
+        if (empty($normalized) || strlen($normalized) !== 2) {
+            throw new InvalidArgumentException(
+                sprintf('The value "%s" (%s) is not a valid ISO 3166-1 alpha 2.', $value, $normalized)
+            );
+        }
+
+        $this->isoAlpha2 = StringUtils::convertCaseToUpper($normalized);
     }
 
     /**
@@ -60,19 +72,25 @@ class Country implements ValueObject
      *
      * @see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
      */
-    public function getIsoAlpha2() : string
+    public function getIsoAlpha2() : ?string
     {
         return $this->isoAlpha2;
     }
 
-    private function setIsoAlpha3(string $value) : void
+    private function setIsoAlpha3(?string $value = null) : void
     {
-        $normalized = StringUtils::trimSpaces($value);
-        if (empty($normalized) || \strlen($normalized) !== 3) {
-            throw new \InvalidArgumentException(sprintf('The value "%s" is not a valid ISO 3166-1 alpha 3.', $value));
+        if ($value === null) {
+            return;
         }
 
-        $this->isoAlpha3 = mb_convert_case($value, MB_CASE_UPPER, 'UTF-8');
+        $normalized = StringUtils::removeSpaces($value);
+        if (empty($normalized) || strlen($normalized) !== 3) {
+            throw new InvalidArgumentException(
+                sprintf('The value "%s" (%s) is not a valid ISO 3166-1 alpha 3.', $value, $normalized)
+            );
+        }
+
+        $this->isoAlpha3 = StringUtils::convertCaseToUpper($normalized);
     }
 
     /**
@@ -80,18 +98,19 @@ class Country implements ValueObject
      *
      * @see https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
      */
-    public function getIsoAlpha3() : string
+    public function getIsoAlpha3() : ?string
     {
         return $this->isoAlpha3;
     }
 
     public function equals(ValueObject $object) : bool
     {
-        if (! $object instanceof self) {
+        if (!$object instanceof self) {
             return false;
         }
 
-        return $object->getIsoAlpha2() === $this->getIsoAlpha2() &&
+        return $object->getName() === $this->getName() &&
+            $object->getIsoAlpha2() === $this->getIsoAlpha2() &&
             $object->getIsoAlpha3() === $this->getIsoAlpha3();
     }
 

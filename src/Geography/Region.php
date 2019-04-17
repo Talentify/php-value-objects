@@ -22,7 +22,7 @@ class Region implements ValueObject
 
     private function setName(string $name) : void
     {
-        $normalized = StringUtils::trimSpaces($name);
+        $normalized = StringUtils::trimSpacesWisely($name);
         if (empty($normalized)) {
             throw new \InvalidArgumentException(sprintf('The value "%s" is not a valid region name.', $name));
         }

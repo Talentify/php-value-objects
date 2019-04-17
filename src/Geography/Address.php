@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Talentify\ValueObject\Geography;
 
-interface Address
+use Talentify\ValueObject\ValueObject;
+
+interface Address extends ValueObject
 {
     /**
      * Returns the formatted address.
@@ -14,5 +16,5 @@ interface Address
     /**
      * Returns the formatted address.
      */
-    public function __toString();
+    public function __toString() : string;
 }

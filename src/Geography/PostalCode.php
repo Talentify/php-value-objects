@@ -22,7 +22,7 @@ class PostalCode implements ValueObject
 
     private function setValue(string $value) : void
     {
-        $normalized = StringUtils::trimSpaces($value);
+        $normalized = StringUtils::trimSpacesWisely($value);
         if (empty($normalized)) {
             throw new \InvalidArgumentException(sprintf('The value "%s" is not a valid postal code.', $value));
         }

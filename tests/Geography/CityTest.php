@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Talentify\ValueObject\Geography;
 
+use Talentify\ValueObject\InvalidConstructorValueAssert;
 use Talentify\ValueObject\ValueObjectTestCase;
 
 class CityTest extends ValueObjectTestCase
 {
+    use InvalidConstructorValueAssert;
+
     public static function getClassName() : string
     {
         return City::class;

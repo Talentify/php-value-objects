@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Talentify\ValueObject\Geography;
 
+use Talentify\ValueObject\InvalidConstructorValueAssert;
 use Talentify\ValueObject\ValueObjectTestCase;
 
 class PostalCodeTest extends ValueObjectTestCase
 {
+    use InvalidConstructorValueAssert;
+
     public function testCanNotUseInteger() : void
     {
         $this->expectException(\TypeError::class);

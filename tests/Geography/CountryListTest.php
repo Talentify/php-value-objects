@@ -28,7 +28,8 @@ class CountryListTest extends TestCase
     public function objectDataProvider() : array
     {
         return [
-            [CountryList::EUA(), ['United States Of America', 'US', 'USA']],
+            [CountryList::BR(), ['Brazil', 'BR', 'BRA']],
+            [CountryList::US(), ['United States Of America', 'US', 'USA']],
         ];
     }
 }

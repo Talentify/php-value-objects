@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Talentify\ValueObject\Geography;
 
+use InvalidArgumentException;
 use Talentify\ValueObject\StringUtils;
+use Talentify\ValueObject\ValueObject;
 
 /**
  * A messy address.
@@ -21,9 +23,9 @@ class NonFormattedAddress implements PhysicalAddress
 
     protected function setAddress(string $address) : void
     {
-        $normalized = StringUtils::trimSpaces($address);
+        $normalized = StringUtils::trimSpacesWisely($address);
         if (empty($normalized)) {
-            throw new \InvalidArgumentException(sprintf('The value "%s" is invalid.', $address));
+            throw new InvalidArgumentException(sprintf('The value "%s" is invalid.', $address));
         }
 
         $this->address = StringUtils::convertCaseToTitle($normalized);
@@ -59,7 +61,16 @@ class NonFormattedAddress implements PhysicalAddress
         return null;
     }
 
-    public function __toString()
+    public function equals(ValueObject $object) : bool
+    {
+        if (!$object instanceof self) {
+            return false;
+        }
+
+        return $this->getAddress() === $object->getAddress();
+    }
+
+    public function __toString() : string
     {
         return $this->getAddress();
     }
