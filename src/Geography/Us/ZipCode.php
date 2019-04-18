@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Talentify\ValueObject\Geography\Eua;
+namespace Talentify\ValueObject\Geography\Us;
 
 use Talentify\ValueObject\Geography\PostalCode;
 

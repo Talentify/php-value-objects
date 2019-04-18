@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Talentify\ValueObject\Geography\Eua;
+namespace Talentify\ValueObject\Geography\Us;
 
 use Talentify\ValueObject\Geography\City;
 use Talentify\ValueObject\Geography\Country;
@@ -18,12 +18,10 @@ use Talentify\ValueObject\ValueObject;
  *
  * @see https://en.wikipedia.org/wiki/Address#United_States
  */
-final class EuaPhysicalAddress implements PhysicalAddress
+final class UsPhysicalAddress implements PhysicalAddress
 {
     /** @var \Talentify\ValueObject\Geography\Street */
     protected $street;
-    /** @var \Talentify\ValueObject\Geography\District */
-    protected $district;
     /** @var \Talentify\ValueObject\Geography\City */
     protected $city;
     /** @var \Talentify\ValueObject\Geography\Region */
@@ -34,16 +32,16 @@ final class EuaPhysicalAddress implements PhysicalAddress
     protected $address;
 
     public function __construct(
-        Street $street,
-        City $city, // Town
-        Region $region, // State
-        ZipCode $zipCode
+        ?Street $street = null,
+        ?City $town = null,
+        ?Region $state = null,
+        ?ZipCode $zipCode = null
     ) {
-        $this->street   = $street;
-        $this->city     = $city;
-        $this->region   = $region;
-        $this->country  = CountryList::US();
-        $this->address  = ''; // #TODO
+        $this->street  = $street;
+        $this->city    = $town;
+        $this->region  = $state;
+        $this->country = CountryList::US();
+        $this->address = ''; // #TODO
     }
 
     public function getStreet() : ?Street
@@ -53,7 +51,7 @@ final class EuaPhysicalAddress implements PhysicalAddress
 
     public function getDistrict() : ?District
     {
-        return $this->district;
+        return null;
     }
 
     public function getCity() : ?City
@@ -76,7 +74,7 @@ final class EuaPhysicalAddress implements PhysicalAddress
         return $this->region;
     }
 
-    public function getCountry() : ?Country
+    public function getCountry() : Country
     {
         return $this->country;
     }
@@ -88,8 +86,20 @@ final class EuaPhysicalAddress implements PhysicalAddress
 
     public function equals(ValueObject $object) : bool
     {
-        // #TODO
-        return true;
+        if (!$object instanceof self) {
+            return false;
+        }
+
+        $street  = $this->getStreet() ?: new Street('<empty>', '<empty>', '<empty>');
+        $city    = $this->getCity() ?: new City('<empty>');
+        $region  = $this->getRegion() ?: new Region('<empty>');
+        $country = $this->getCountry() ?: new Country('<empty>');
+        // #TODO zip code
+
+        return $street->equals($object->getStreet()) &&
+            $city->equals($object->getCity()) &&
+            $region->equals($object->getRegion()) &&
+            $country->equals($object->getCountry());
     }
 
     public function __toString() : string
