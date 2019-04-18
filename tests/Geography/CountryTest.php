@@ -50,6 +50,9 @@ class CountryTest extends ValueObjectTestCase
         ];
     }
 
+    /**
+     * @return mixed[]
+     */
     public function invalidValueDataProvider() : array
     {
         return [
@@ -69,6 +72,9 @@ class CountryTest extends ValueObjectTestCase
         $this->assertEquals($country->getName(), $expected);
     }
 
+    /**
+     * @return mixed[]
+     */
     public function countryNameDataProvider() : array
     {
         return [
@@ -89,6 +95,9 @@ class CountryTest extends ValueObjectTestCase
         $this->assertEquals($country->getIsoAlpha2(), $expected);
     }
 
+    /**
+     * @return mixed[]
+     */
     public function isoAlpha2DataProvider() : array
     {
         return [
@@ -113,17 +122,20 @@ class CountryTest extends ValueObjectTestCase
         $this->assertEquals($country->getIsoAlpha3(), $expected);
     }
 
+    /**
+     * @return mixed[]
+     */
     public function isoAlpha3DataProvider() : array
     {
         return [
             ['uSA', 'USA'],
             ['UsA', 'USA'],
             ['usa', 'USA'],
-            // ['u s a', 'USA'],
-            // ['usa ', 'USA'],
-            // ['u sa ', 'USA'],
-            // ["usa\n", 'USA'],
-            // ["usa\t", 'USA'],
+            ['u s a', 'USA'],
+            ['usa ', 'USA'],
+            ['u sa ', 'USA'],
+            ["usa\n", 'USA'],
+            ["usa\t", 'USA'],
         ];
     }
 }

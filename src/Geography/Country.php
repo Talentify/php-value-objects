@@ -19,8 +19,8 @@ class Country implements ValueObject
     private $isoAlpha3;
 
     /**
-     * @param string $isoAlpha2 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
-     * @param string $isoAlpha3 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
+     * @param string|null $isoAlpha2 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+     * @param string|null $isoAlpha3 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
      *
      * @throws \InvalidArgumentException if supplied value is invalid.
      *

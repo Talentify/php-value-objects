@@ -7,3 +7,5 @@ RUN apt-get update && \
 
 RUN groupadd -r app --gid=1000 &&\
 useradd -r -g app --uid=1000 --home-dir=/usr/src/app --shell=/bin/bash app
+
+COPY --from=composer /usr/bin/composer /usr/bin/composer

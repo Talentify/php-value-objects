@@ -5,7 +5,7 @@
   "license": "lgpl-3.0",
   "homepage": "https://github.com/talentify/php-value-objects",
   "keywords": [
-    "value-objects"
+    "value-objects", "vo", "iso 3166"
   ],
   "require": {
     "php": "^7.1.0",
@@ -31,10 +31,7 @@
     "sort-packages": true
   },
   "scripts": {
-    "phpunit": "phpunit",
-    "test": [
-      "@phpunit"
-    ]
+    "test": "vendor/bin/phpunit"
   },
   "scripts-descriptions": {
     "test": "Run tests"
