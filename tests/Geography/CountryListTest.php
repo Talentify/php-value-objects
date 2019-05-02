@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Talentify\ValueObject\Geography;
 
 use PHPUnit\Framework\TestCase;
+use Talentify\ValueObject\Geography\Address\Country;
 
 class CountryListTest extends TestCase
 {
     /**
-     * @param \Talentify\ValueObject\Geography\Country $object
+     * @param \Talentify\ValueObject\Geography\Address\Country $object
      *
      * @dataProvider objectDataProvider
      */

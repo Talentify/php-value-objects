@@ -1,0 +1,20 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Talentify\ValueObject\Geography\Address;
+
+use Talentify\ValueObject\ValueObject;
+
+interface Address extends ValueObject
+{
+    /**
+     * Returns the formatted address.
+     */
+    public function getFormattedAddress() : string;
+
+    /**
+     * Returns the formatted address.
+     */
+    public function __toString() : string;
+}

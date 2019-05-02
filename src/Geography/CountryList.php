@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Talentify\ValueObject\Geography;
 
+use Talentify\ValueObject\Geography\Address\Country;
+
 /**
  * @see https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
  */

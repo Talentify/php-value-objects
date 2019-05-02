@@ -12,7 +12,7 @@ interface ValueObject
     /**
      * Whether or not the current object is equal to the other.
      */
-    public function equals(ValueObject $object) : bool;
+    public function equals(?ValueObject $object) : bool;
 
     /**
      * Return the Value Object's string representation.
