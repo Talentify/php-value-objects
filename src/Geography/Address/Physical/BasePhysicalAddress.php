@@ -30,6 +30,9 @@ class BasePhysicalAddress implements PhysicalAddress
     /** @var string */
     protected $formattedAddress;
 
+    /**
+     * @throws \InvalidArgumentException
+     */
     public function __construct(
         ?Street $street = null,
         ?City $city = null,
@@ -80,23 +83,28 @@ class BasePhysicalAddress implements PhysicalAddress
         return (
             (
                 (null === $this->getStreet() && null === $object->getStreet()) ||
-                $this->getStreet()->equals($object->getStreet())
+                (\is_object($this->getStreet()) && $this->getStreet()->equals($object->getStreet())) ||
+                (\is_object($object->getStreet()) && $object->getStreet()->equals($this->getStreet()))
             ) &&
             (
                 (null === $this->getCity() && null === $object->getCity()) ||
-                $this->getCity()->equals($object->getCity())
+                (\is_object($this->getCity()) && $this->getCity()->equals($object->getCity())) ||
+                (\is_object($object->getCity()) && $object->getCity()->equals($this->getCity()))
             ) &&
             (
                 (null === $this->getRegion() && null === $object->getRegion()) ||
-                $this->getRegion()->equals($object->getRegion())
+                (\is_object($this->getRegion()) && $this->getRegion()->equals($object->getRegion())) ||
+                (\is_object($object->getRegion()) && $object->getRegion()->equals($this->getRegion()))
             ) &&
             (
                 (null === $this->getPostalCode() && null === $object->getPostalCode()) ||
-                $this->getPostalCode()->equals($object->getPostalCode())
+                (\is_object($this->getPostalCode()) && $this->getPostalCode()->equals($object->getPostalCode())) ||
+                (\is_object($object->getPostalCode()) && $object->getPostalCode()->equals($this->getPostalCode()))
             ) &&
             (
                 (null === $this->getCountry() && null === $object->getCountry()) ||
-                $this->getCountry()->equals($object->getCountry())
+                (\is_object($this->getCountry()) && $this->getCountry()->equals($object->getCountry())) ||
+                (\is_object($object->getCountry()) && $object->getCountry()->equals($this->getCountry()))
             )
         );
     }

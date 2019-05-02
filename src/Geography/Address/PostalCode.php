@@ -16,6 +16,9 @@ class PostalCode implements AddressElement
     /** @var string */
     private $value;
 
+    /**
+     * @throws \InvalidArgumentException
+     */
     public function __construct(string $value)
     {
         $this->setValue($value);

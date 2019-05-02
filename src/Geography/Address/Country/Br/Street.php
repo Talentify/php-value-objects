@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Talentify\ValueObject\Geography\Address\Country\Br;
 
 use InvalidArgumentException;
-use Talentify\ValueObject\Geography\Address\BaseStreet;
 use Talentify\ValueObject\StringUtils;
 use Talentify\ValueObject\Geography\Address\Street as B;
 

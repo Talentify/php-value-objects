@@ -65,6 +65,54 @@ class BrPhysicalAddressTest extends ValueObjectTestCase
                     new CEP('06473-073')
                 ),
             ],
+            [
+                new BrPhysicalAddress(
+                    new Street('avenida', 'sagitário', '138', 'Torre Foo'),
+                    new Neighbourhood('alpha Conde II'),
+                    new Municipality('barueri'),
+                    new State('são Paulo', 'SP'),
+                    null
+                ),
+                new BrPhysicalAddress(
+                    new Street('avenida', 'Foo', '138', 'Torre Foo'),
+                    new Neighbourhood('alpha Conde 99'),
+                    new Municipality('barueri'),
+                    new State('são Paulo', 'SP'),
+                    new CEP('06473-073')
+                ),
+            ],
+            [
+                new BrPhysicalAddress(
+                    new Street('avenida', 'sagitário', '138', 'Torre Foo'),
+                    new Neighbourhood('alpha Conde II'),
+                    new Municipality('barueri'),
+                    new State('são Paulo', 'SP'),
+                    new CEP('06473-073')
+                ),
+                new BrPhysicalAddress(
+                    new Street('avenida', 'Foo', '138', 'Torre Foo'),
+                    new Neighbourhood('alpha Conde 99'),
+                    new Municipality('barueri'),
+                    new State('são Paulo', 'SP'),
+                    null
+                ),
+            ],
+            [
+                new BrPhysicalAddress(
+                    new Street('avenida', 'sagitário', '138', 'Torre Foo'),
+                    new Neighbourhood('alpha Conde II'),
+                    null,
+                    new State('são Paulo', 'SP'),
+                    new CEP('06473-073')
+                ),
+                new BrPhysicalAddress(
+                    new Street('avenida', 'Foo', '138', 'Torre Foo'),
+                    new Neighbourhood('alpha Conde 99'),
+                    new Municipality('barueri'),
+                    new State('são Paulo', 'SP'),
+                    null
+                ),
+            ],
         ];
     }
 }

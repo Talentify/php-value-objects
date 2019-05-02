@@ -21,9 +21,13 @@ class MessyPhysicalAddress implements PhysicalAddress
     /** @var string */
     public $address;
 
-    public function __construct(string $address)
-    {
-        $this->setAddress($address);
+    /**
+     * @throws \InvalidArgumentException
+     */
+    public function __construct(
+        string $messyAddress
+    ) {
+        $this->setAddress($messyAddress);
     }
 
     protected function setAddress(string $address) : void

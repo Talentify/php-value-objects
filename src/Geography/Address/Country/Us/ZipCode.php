@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Talentify\ValueObject\Geography\Address\Country\Us;
 
-use Talentify\ValueObject\Geography\Address\BasePostalCode;
 use Talentify\ValueObject\Geography\Address\PostalCode as B;
 
 /**

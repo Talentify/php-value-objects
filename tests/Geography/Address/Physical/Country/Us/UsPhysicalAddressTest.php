@@ -54,6 +54,34 @@ class UsPhysicalAddressTest extends ValueObjectTestCase
                     null
                 ),
             ],
+            [
+                new UsPhysicalAddress(
+                    new BaseStreet('foo1', 'bar', 'baz'),
+                    new BaseCity('Seattle'),
+                    null,
+                    new ZipCode('01234567')
+                ),
+                new UsPhysicalAddress(
+                    new BaseStreet('foo2', 'bar', 'baz'),
+                    new BaseCity('Seattle'),
+                    new State('Washington'),
+                    null
+                ),
+            ],
+            [
+                new UsPhysicalAddress(
+                    new BaseStreet('foo1', 'bar', 'baz'),
+                    new BaseCity('Seattle'),
+                    new State('Washington'),
+                    new ZipCode('01234567')
+                ),
+                new UsPhysicalAddress(
+                    new BaseStreet('foo2', 'bar', 'baz'),
+                    null,
+                    null,
+                    null
+                ),
+            ],
         ];
     }
 }
