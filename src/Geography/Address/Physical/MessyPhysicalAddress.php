@@ -19,30 +19,39 @@ use Talentify\ValueObject\ValueObject;
 class MessyPhysicalAddress implements PhysicalAddress
 {
     /** @var string */
-    public $address;
+    private $messyAddress;
+    private $city;
+    private $region;
+    private $country;
 
     /**
      * @throws \InvalidArgumentException
      */
     public function __construct(
-        string $messyAddress
+        string $messyAddress,
+        ?City $city = null,
+        ?Region $region = null,
+        ?Country $country = null
     ) {
-        $this->setAddress($messyAddress);
+        $this->setMessyAddress($messyAddress);
+        $this->city    = $city;
+        $this->region  = $region;
+        $this->country = $country;
     }
 
-    protected function setAddress(string $address) : void
+    protected function setMessyAddress(string $messyAddress) : void
     {
-        $normalized = StringUtils::trimSpacesWisely($address);
+        $normalized = StringUtils::trimSpacesWisely($messyAddress);
         if (empty($normalized)) {
-            throw new InvalidArgumentException(sprintf('The value "%s" is invalid.', $address));
+            throw new InvalidArgumentException(sprintf('The value "%s" is invalid.', $messyAddress));
         }
 
-        $this->address = StringUtils::convertCaseToTitle($normalized);
+        $this->messyAddress = StringUtils::convertCaseToTitle($normalized);
     }
 
     public function getFormattedAddress() : string
     {
-        return $this->address;
+        return $this->messyAddress;
     }
 
     public function getStreet() : ?Street
@@ -52,12 +61,12 @@ class MessyPhysicalAddress implements PhysicalAddress
 
     public function getCity() : ?City
     {
-        return null;
+        return $this->city;
     }
 
     public function getRegion() : ?Region
     {
-        return null;
+        return $this->region;
     }
 
     public function getPostalCode() : ?PostalCode
@@ -67,7 +76,7 @@ class MessyPhysicalAddress implements PhysicalAddress
 
     public function getCountry() : ?Country
     {
-        return null;
+        return $this->country;
     }
 
     public function equals(?ValueObject $object) : bool
@@ -76,7 +85,26 @@ class MessyPhysicalAddress implements PhysicalAddress
             return false;
         }
 
-        return $this->getFormattedAddress() === $object->getFormattedAddress();
+        return (
+            (
+                strtolower($this->getFormattedAddress()) === strtolower($object->getFormattedAddress())
+            ) &&
+            (
+                (null === $this->getCity() && null === $object->getCity()) ||
+                (\is_object($this->getCity()) && $this->getCity()->equals($object->getCity())) ||
+                (\is_object($object->getCity()) && $object->getCity()->equals($this->getCity()))
+            ) &&
+            (
+                (null === $this->getRegion() && null === $object->getRegion()) ||
+                (\is_object($this->getRegion()) && $this->getRegion()->equals($object->getRegion())) ||
+                (\is_object($object->getRegion()) && $object->getRegion()->equals($this->getRegion()))
+            ) &&
+            (
+                (null === $this->getCountry() && null === $object->getCountry()) ||
+                (\is_object($this->getCountry()) && $this->getCountry()->equals($object->getCountry())) ||
+                (\is_object($object->getCountry()) && $object->getCountry()->equals($this->getCountry()))
+            )
+        );
     }
 
     public function __toString() : string
