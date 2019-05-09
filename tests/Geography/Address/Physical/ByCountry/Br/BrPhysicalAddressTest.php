@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Talentify\ValueObject\Geography\Address\Physical\Country\Br;
+namespace Talentify\ValueObject\Geography\Address\Physical\ByCountry\Br;
 
-use Talentify\ValueObject\Geography\Address\Country\Br\Municipality;
-use Talentify\ValueObject\Geography\Address\Country\Br\Neighbourhood;
-use Talentify\ValueObject\Geography\Address\Country\Br\CEP;
-use Talentify\ValueObject\Geography\Address\Country\Br\State;
-use Talentify\ValueObject\Geography\Address\Country\Br\Street;
+use Talentify\ValueObject\Geography\Address\ByCountry\Br\CEP;
+use Talentify\ValueObject\Geography\Address\ByCountry\Br\Municipality;
+use Talentify\ValueObject\Geography\Address\ByCountry\Br\Neighbourhood;
+use Talentify\ValueObject\Geography\Address\ByCountry\Br\State;
+use Talentify\ValueObject\Geography\Address\ByCountry\Br\Street;
 use Talentify\ValueObject\ValueObjectTestCase;
 
 class BrPhysicalAddressTest extends ValueObjectTestCase

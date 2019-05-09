@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Talentify\ValueObject\Geography\Address\Physical\Country\Us;
+namespace Talentify\ValueObject\Geography\Address\Physical\ByCountry\Us;
 
+use Talentify\ValueObject\Geography\Address\ByCountry\Us\State;
+use Talentify\ValueObject\Geography\Address\ByCountry\Us\ZipCode;
 use Talentify\ValueObject\Geography\Address\City as BaseCity;
-use Talentify\ValueObject\Geography\Address\Country\Us\ZipCode;
 use Talentify\ValueObject\Geography\Address\Street as BaseStreet;
-use Talentify\ValueObject\Geography\Address\Country\Us\State;
 use Talentify\ValueObject\ValueObjectTestCase;
 
 class UsPhysicalAddressTest extends ValueObjectTestCase

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Talentify\ValueObject\Geography\Address\Physical\Country\Us;
+namespace Talentify\ValueObject\Geography\Address\Physical\ByCountry\Us;
 
+use Talentify\ValueObject\Geography\Address\ByCountry\Us\State;
+use Talentify\ValueObject\Geography\Address\ByCountry\Us\ZipCode;
 use Talentify\ValueObject\Geography\Address\City;
 use Talentify\ValueObject\Geography\Address\City as BaseCity;
 use Talentify\ValueObject\Geography\Address\Country;
-use Talentify\ValueObject\Geography\Address\Country\Us\State;
-use Talentify\ValueObject\Geography\Address\Country\Us\ZipCode;
 use Talentify\ValueObject\Geography\Address\District as BaseDistrict;
 use Talentify\ValueObject\Geography\Address\Physical\PhysicalAddress;
 use Talentify\ValueObject\Geography\Address\PostalCode;
@@ -30,9 +30,9 @@ final class UsPhysicalAddress implements PhysicalAddress
     private $street;
     /** @var \Talentify\ValueObject\Geography\Address\City|null */
     private $city;
-    /** @var \Talentify\ValueObject\Geography\Address\Country\Us\State|null */
+    /** @var \Talentify\ValueObject\Geography\Address\ByCountry\Us\State|null */
     private $state;
-    /** @var \Talentify\ValueObject\Geography\Address\Country\Us\ZipCode|null */
+    /** @var \Talentify\ValueObject\Geography\Address\ByCountry\Us\ZipCode|null */
     private $zipCode;
     /** @var \Talentify\ValueObject\Geography\Address\Country */
     private $country;

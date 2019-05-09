@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Talentify\ValueObject\Geography\Address\Physical\Country\Br;
+namespace Talentify\ValueObject\Geography\Address\Physical\ByCountry\Br;
 
+use Talentify\ValueObject\Geography\Address\ByCountry\Br\CEP as BrPostalCode;
+use Talentify\ValueObject\Geography\Address\ByCountry\Br\Municipality;
+use Talentify\ValueObject\Geography\Address\ByCountry\Br\Neighbourhood as BrNeighbourhood;
+use Talentify\ValueObject\Geography\Address\ByCountry\Br\State as BrState;
+use Talentify\ValueObject\Geography\Address\ByCountry\Br\Street as BrStreet;
 use Talentify\ValueObject\Geography\Address\City;
 use Talentify\ValueObject\Geography\Address\Country;
-use Talentify\ValueObject\Geography\Address\Country\Br\Municipality;
-use Talentify\ValueObject\Geography\Address\Country\Br\Neighbourhood as BrNeighbourhood;
-use Talentify\ValueObject\Geography\Address\Country\Br\CEP as BrPostalCode;
-use Talentify\ValueObject\Geography\Address\Country\Br\State as BrState;
-use Talentify\ValueObject\Geography\Address\Country\Br\Street as BrStreet;
 use Talentify\ValueObject\Geography\Address\Physical\PhysicalAddress;
 use Talentify\ValueObject\Geography\Address\PostalCode;
 use Talentify\ValueObject\Geography\Address\Region;
@@ -26,15 +26,15 @@ use Talentify\ValueObject\ValueObject;
  */
 final class BrPhysicalAddress implements PhysicalAddress
 {
-    /** @var \Talentify\ValueObject\Geography\Address\Country\Br\Street|null */
+    /** @var \Talentify\ValueObject\Geography\Address\ByCountry\Br\Street|null */
     private $street;
-    /** @var \Talentify\ValueObject\Geography\Address\Country\Br\Neighbourhood|null */
+    /** @var \Talentify\ValueObject\Geography\Address\ByCountry\Br\Neighbourhood|null */
     private $neighbourhood;
-    /** @var \Talentify\ValueObject\Geography\Address\Country\Br\Municipality|null */
+    /** @var \Talentify\ValueObject\Geography\Address\ByCountry\Br\Municipality|null */
     private $municipality;
-    /** @var \Talentify\ValueObject\Geography\Address\Country\Br\State|null */
+    /** @var \Talentify\ValueObject\Geography\Address\ByCountry\Br\State|null */
     private $state;
-    /** @var \Talentify\ValueObject\Geography\Address\Country\Br\CEP|null */
+    /** @var \Talentify\ValueObject\Geography\Address\ByCountry\Br\CEP|null */
     private $postalCode;
     /** @var \Talentify\ValueObject\Geography\Address\Country */
     private $country;
@@ -62,7 +62,7 @@ final class BrPhysicalAddress implements PhysicalAddress
     }
 
     /**
-     * @return \Talentify\ValueObject\Geography\Address\Country\Br\Street
+     * @return \Talentify\ValueObject\Geography\Address\ByCountry\Br\Street
      */
     public function getStreet() : ?BaseStreet
     {
@@ -80,7 +80,7 @@ final class BrPhysicalAddress implements PhysicalAddress
     }
 
     /**
-     * @return \Talentify\ValueObject\Geography\Address\Country\Br\Municipality|null
+     * @return \Talentify\ValueObject\Geography\Address\ByCountry\Br\Municipality|null
      */
     public function getCity() : ?City
     {
@@ -88,7 +88,7 @@ final class BrPhysicalAddress implements PhysicalAddress
     }
 
     /**
-     * @return \Talentify\ValueObject\Geography\Address\Country\Br\State|null
+     * @return \Talentify\ValueObject\Geography\Address\ByCountry\Br\State|null
      */
     public function getRegion() : ?Region
     {
@@ -96,7 +96,7 @@ final class BrPhysicalAddress implements PhysicalAddress
     }
 
     /**
-     * @return \Talentify\ValueObject\Geography\Address\Country\Br\State|null
+     * @return \Talentify\ValueObject\Geography\Address\ByCountry\Br\State|null
      */
     public function getState() : ?BrState
     {
@@ -104,7 +104,7 @@ final class BrPhysicalAddress implements PhysicalAddress
     }
 
     /**
-     * @return \Talentify\ValueObject\Geography\Address\Country\Br\CEP|null
+     * @return \Talentify\ValueObject\Geography\Address\ByCountry\Br\CEP|null
      */
     public function getPostalCode() : ?PostalCode
     {
@@ -112,7 +112,7 @@ final class BrPhysicalAddress implements PhysicalAddress
     }
 
     /**
-     * @return \Talentify\ValueObject\Geography\Address\Country\Br\CEP|null
+     * @return \Talentify\ValueObject\Geography\Address\ByCountry\Br\CEP|null
      */
     public function getCep() : ? BrPostalCode
     {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Talentify\ValueObject\Geography\Address\Country\Us;
+namespace Talentify\ValueObject\Geography\Address\ByCountry\Us;
 
 use Talentify\ValueObject\Geography\Address\PostalCode as B;
 
