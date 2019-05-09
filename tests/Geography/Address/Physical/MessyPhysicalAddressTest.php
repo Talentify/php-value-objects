@@ -17,7 +17,7 @@ class MessyPhysicalAddressTest extends ValueObjectTestCase
     {
         $address = new MessyPhysicalAddress($input);
 
-        $this->assertEquals($expected, $address->getFormattedAddress());
+        $this->assertEquals($expected, $address->getAddress());
         $this->assertEquals($expected, $address->__toString());
     }
 

@@ -159,7 +159,7 @@ final class BrPhysicalAddress implements PhysicalAddress
         );
     }
 
-    public function getFormattedAddress() : string
+    public function getAddress() : string
     {
         if ($this->formattedAddress !== null) {
             return $this->formattedAddress;
@@ -180,6 +180,6 @@ final class BrPhysicalAddress implements PhysicalAddress
 
     public function __toString() : string
     {
-        return $this->getFormattedAddress();
+        return $this->getAddress();
     }
 }

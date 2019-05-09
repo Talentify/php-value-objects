@@ -50,12 +50,12 @@ interface PhysicalAddress extends Address
     /**
      * The complete address that may be formatted.
      */
-    public function getFormattedAddress() : string;
+    public function getAddress() : string;
 
     /**
      * The complete address that may be formatted.
      *
-     * @see PhysicalAddress::getFormattedAddress()
+     * @see PhysicalAddress::getAddress()
      */
     public function __toString() : string;
 }

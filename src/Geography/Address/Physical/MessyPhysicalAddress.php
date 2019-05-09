@@ -20,8 +20,11 @@ class MessyPhysicalAddress implements PhysicalAddress
 {
     /** @var string */
     private $messyAddress;
+    /** @var \Talentify\ValueObject\Geography\Address\City|null */
     private $city;
+    /** @var \Talentify\ValueObject\Geography\Address\Region|null */
     private $region;
+    /** @var \Talentify\ValueObject\Geography\Address\Country|null */
     private $country;
 
     /**
@@ -49,7 +52,7 @@ class MessyPhysicalAddress implements PhysicalAddress
         $this->messyAddress = StringUtils::convertCaseToTitle($normalized);
     }
 
-    public function getFormattedAddress() : string
+    public function getAddress() : string
     {
         return $this->messyAddress;
     }
@@ -87,7 +90,7 @@ class MessyPhysicalAddress implements PhysicalAddress
 
         return (
             (
-                strtolower($this->getFormattedAddress()) === strtolower($object->getFormattedAddress())
+                strtolower($this->getAddress()) === strtolower($object->getAddress())
             ) &&
             (
                 (null === $this->getCity() && null === $object->getCity()) ||
@@ -109,6 +112,6 @@ class MessyPhysicalAddress implements PhysicalAddress
 
     public function __toString() : string
     {
-        return $this->getFormattedAddress();
+        return $this->getAddress();
     }
 }

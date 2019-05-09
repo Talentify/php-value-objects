@@ -11,7 +11,7 @@ interface Address extends ValueObject
     /**
      * Returns the formatted address.
      */
-    public function getFormattedAddress() : string;
+    public function getAddress() : string;
 
     /**
      * Returns the formatted address.
