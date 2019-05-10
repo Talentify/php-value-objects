@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3.7'
 
 services:
   app:
@@ -6,4 +6,4 @@ services:
     volumes:
       - "./:/usr/src/app"
     working_dir: "/usr/src/app/"
-    user: ${CURRENT_UID}
+    user: ${CURRENT_UID:-1000}
