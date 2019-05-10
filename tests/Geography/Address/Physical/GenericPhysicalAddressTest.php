@@ -11,25 +11,25 @@ use Talentify\ValueObject\Geography\Address\Street as BaseStreet;
 use Talentify\ValueObject\Geography\CountryList;
 use Talentify\ValueObject\ValueObjectTestCase;
 
-class BasePhysicalAddressTest extends ValueObjectTestCase
+class GenericPhysicalAddressTest extends ValueObjectTestCase
 {
     public static function getClassName() : string
     {
-        return BasePhysicalAddress::class;
+        return GenericPhysicalAddress::class;
     }
 
     public function sameValueDataProvider() : array
     {
         return [
             [
-                new BasePhysicalAddress(
+                new GenericPhysicalAddress(
                     new BaseStreet('foo', 'bar', 'baz'),
                     new BaseCity('Seattle'),
                     new BaseRegion('Washington'),
                     new BasePostalCode('06473-073'),
                     CountryList::US()
                 ),
-                new BasePhysicalAddress(
+                new GenericPhysicalAddress(
                     new BaseStreet('foo', 'bar', 'baz'),
                     new BaseCity('Seattle'),
                     new BaseRegion('Washington'),
@@ -44,14 +44,14 @@ class BasePhysicalAddressTest extends ValueObjectTestCase
     {
         return [
             [
-                new BasePhysicalAddress(
+                new GenericPhysicalAddress(
                     new BaseStreet('foo1', 'bar', 'baz'),
                     new BaseCity('Seattle'),
                     new BaseRegion('Washington'),
                     new BasePostalCode('06473-073'),
                     CountryList::US()
                 ),
-                new BasePhysicalAddress(
+                new GenericPhysicalAddress(
                     new BaseStreet('foo2', 'bar', 'baz'),
                     new BaseCity('Seattle'),
                     new BaseRegion('Washington'),

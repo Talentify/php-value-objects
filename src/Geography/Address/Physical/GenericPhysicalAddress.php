@@ -13,9 +13,9 @@ use Talentify\ValueObject\StringUtils;
 use Talentify\ValueObject\ValueObject;
 
 /**
- * A common structure for a physical address.
+ * A generic structure for a physical address.
  */
-class BasePhysicalAddress implements PhysicalAddress
+class GenericPhysicalAddress implements PhysicalAddress
 {
     /** @var \Talentify\ValueObject\Geography\Address\Street|null */
     protected $street;
