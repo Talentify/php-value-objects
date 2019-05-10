@@ -7,6 +7,7 @@ namespace Talentify\ValueObject\Geography\Address;
 use InvalidArgumentException;
 use Talentify\ValueObject\StringUtils;
 use Talentify\ValueObject\ValueObject;
+use function is_string;
 
 /**
  * @see https://en.wikipedia.org/wiki/Street_or_road_name
@@ -17,13 +18,13 @@ class Street implements AddressElement
     protected $name;
     /** @var string */
     protected $number;
-    /** @var string other identifiers such as house or apartment numbers */
+    /** @var string|null other identifiers such as house or apartment numbers */
     protected $otherIdentifiers;
 
     /**
      * @throws \InvalidArgumentException if supplied value is invalid.
      */
-    public function __construct(string $name, string $number, string $otherIdentifiers)
+    public function __construct(string $name, string $number, ?string $otherIdentifiers = null)
     {
         $this->setName($name);
         $this->setNumber($number);
@@ -60,17 +61,21 @@ class Street implements AddressElement
         return $this->number;
     }
 
-    protected function setOthers(string $others) : void
+    protected function setOthers(?string $others = null) : void
     {
-        $normalized = StringUtils::trimSpacesWisely($others);
-        if (empty($normalized)) {
-            throw new InvalidArgumentException(sprintf('The value "%s" is not a valid "other identifiers".', $others));
+        if (is_string($others)) {
+            $normalized = StringUtils::trimSpacesWisely($others);
+            if (empty($normalized)) {
+                throw new InvalidArgumentException(sprintf('The value "%s" is not a valid "other identifiers".', $others));
+            }
+        } else {
+            $normalized = $others;
         }
 
         $this->otherIdentifiers = $normalized;
     }
 
-    public function getOtherIdentifiers() : string
+    public function getOtherIdentifiers() : ?string
     {
         return $this->otherIdentifiers;
     }
