@@ -7,7 +7,6 @@ namespace Talentify\ValueObject\Geography\Address;
 use InvalidArgumentException;
 use Talentify\ValueObject\StringUtils;
 use Talentify\ValueObject\ValueObject;
-use function is_string;
 
 /**
  * @see https://en.wikipedia.org/wiki/Street_or_road_name
@@ -24,7 +23,7 @@ class Street implements AddressElement
     /**
      * @throws \InvalidArgumentException if supplied value is invalid.
      */
-    public function __construct(string $name, string $number, ?string $otherIdentifiers = null)
+    public function __construct(string $name, ?string $number = null, ?string $otherIdentifiers = null)
     {
         $this->setName($name);
         $this->setNumber($number);
@@ -46,8 +45,12 @@ class Street implements AddressElement
         return $this->name;
     }
 
-    protected function setNumber(string $number) : void
+    protected function setNumber(?string $number = null) : void
     {
+        if ($number === null) {
+            return;
+        }
+
         $normalized = StringUtils::trimSpacesWisely($number);
         if (empty($normalized)) {
             throw new InvalidArgumentException(sprintf('The value "%s" is not a valid "number".', $number));
@@ -56,20 +59,20 @@ class Street implements AddressElement
         $this->number = $number;
     }
 
-    public function getNumber() : string
+    public function getNumber() : ?string
     {
         return $this->number;
     }
 
     protected function setOthers(?string $others = null) : void
     {
-        if (is_string($others)) {
-            $normalized = StringUtils::trimSpacesWisely($others);
-            if (empty($normalized)) {
-                throw new InvalidArgumentException(sprintf('The value "%s" is not a valid "other identifiers".', $others));
-            }
-        } else {
-            $normalized = $others;
+        if ($others === null) {
+            return;
+        }
+
+        $normalized = StringUtils::trimSpacesWisely($others);
+        if (empty($normalized)) {
+            throw new InvalidArgumentException(sprintf('The value "%s" is not a valid "other identifiers".', $others));
         }
 
         $this->otherIdentifiers = $normalized;
