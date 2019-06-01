@@ -121,6 +121,13 @@ class Country implements AddressElement
 
     public function __toString() : string
     {
+        if ($this->isoAlpha2 !== null) {
+            return $this->isoAlpha2;
+        }
+
+        if ($this->isoAlpha3 !== null) {
+            return $this->isoAlpha3;
+        }
         return $this->name;
     }
 }

@@ -7,9 +7,8 @@ namespace Talentify\ValueObject\Geography\Address\ByCountry\Us;
 use Talentify\ValueObject\Geography\Address\Region as BaseRegion;
 
 /**
- * @see https://en.wikipedia.org/wiki/Federated_state
- * @see https://en.wikipedia.org/wiki/List_of_U.S._state_abbreviations
+ * @see https://en.wikipedia.org/wiki/County_(United_States)
  */
-class State extends BaseRegion
+class County extends BaseRegion
 {
 }

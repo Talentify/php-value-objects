@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Talentify\ValueObject\Geography\Address\Physical\ByCountry\Us;
 
+use Talentify\ValueObject\Geography\Address\ByCountry\Us\County;
 use Talentify\ValueObject\Geography\Address\ByCountry\Us\State;
 use Talentify\ValueObject\Geography\Address\ByCountry\Us\ZipCode;
 use Talentify\ValueObject\Geography\Address\City as BaseCity;
@@ -24,12 +25,14 @@ class UsPhysicalAddressTest extends ValueObjectTestCase
                 new UsPhysicalAddress(
                     new BaseStreet('foo', 'bar', 'baz'),
                     new BaseCity('Seattle'),
+                    new County('King County'),
                     new State('Washington'),
                     null
                 ),
                 new UsPhysicalAddress(
                     new BaseStreet('foo', 'bar', 'baz'),
                     new BaseCity('Seattle'),
+                    new County('king county'),
                     new State('Washington'),
                     null
                 ),
@@ -44,12 +47,14 @@ class UsPhysicalAddressTest extends ValueObjectTestCase
                 new UsPhysicalAddress(
                     new BaseStreet('foo1', 'bar', 'baz'),
                     new BaseCity('Seattle'),
+                    new County('King County'),
                     new State('Washington'),
                     new ZipCode('01234567')
                 ),
                 new UsPhysicalAddress(
                     new BaseStreet('foo2', 'bar', 'baz'),
                     new BaseCity('Seattle'),
+                    new County('King County'),
                     new State('Washington'),
                     null
                 ),
@@ -58,12 +63,14 @@ class UsPhysicalAddressTest extends ValueObjectTestCase
                 new UsPhysicalAddress(
                     new BaseStreet('foo1', 'bar', 'baz'),
                     new BaseCity('Seattle'),
+                    new County('King County'),
                     null,
                     new ZipCode('01234567')
                 ),
                 new UsPhysicalAddress(
                     new BaseStreet('foo2', 'bar', 'baz'),
                     new BaseCity('Seattle'),
+                    new County('King County'),
                     new State('Washington'),
                     null
                 ),
@@ -72,6 +79,7 @@ class UsPhysicalAddressTest extends ValueObjectTestCase
                 new UsPhysicalAddress(
                     new BaseStreet('foo1', 'bar', 'baz'),
                     new BaseCity('Seattle'),
+                    new County('King County'),
                     new State('Washington'),
                     new ZipCode('01234567')
                 ),

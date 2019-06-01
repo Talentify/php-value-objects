@@ -15,6 +15,10 @@ use Talentify\ValueObject\ValueObject;
 
 /**
  * A confuse physical address.
+ *
+ * Example:
+ * - new MessyPhysicalAddress('400 Broad St, Seattle')
+ * - new MessyPhysicalAddress('400 Broad St', new City('Seattle'), new Region('Washington'), CountryList::US())
  */
 class MessyPhysicalAddress implements PhysicalAddress
 {
@@ -54,7 +58,17 @@ class MessyPhysicalAddress implements PhysicalAddress
 
     public function getAddress() : string
     {
-        return $this->messyAddress;
+        $messyAddress =  $this->messyAddress;
+
+        $notNull = array_filter([$this->city, $this->region, $this->country], function ($element) {
+            return $element !== null;
+        });
+
+        if (\count($notNull) === 0) {
+            return $this->messyAddress;
+        }
+
+        return sprintf('%s, %s', $messyAddress, implode(', ', $notNull));
     }
 
     public function getStreet() : ?Street

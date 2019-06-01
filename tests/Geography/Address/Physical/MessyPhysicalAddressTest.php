@@ -6,10 +6,23 @@ namespace Talentify\ValueObject\Geography\Address\Physical;
 
 use Talentify\ValueObject\Geography\Address\City;
 use Talentify\ValueObject\Geography\Address\Region;
+use Talentify\ValueObject\Geography\CountryList;
 use Talentify\ValueObject\ValueObjectTestCase;
 
 class MessyPhysicalAddressTest extends ValueObjectTestCase
 {
+    public function testWillGetFormattedAddress() : void
+    {
+        $messyAddress = new MessyPhysicalAddress('400 broad St, seattle');
+        $this->assertEquals('400 Broad St, Seattle', $messyAddress->getAddress());
+
+        $messyAddress = new MessyPhysicalAddress('washington', null, new Region('king county'));
+        $this->assertEquals('Washington, King County', $messyAddress->getAddress());
+
+        $messyAddress = new MessyPhysicalAddress('400 broad st', new City('Seattle'), new Region('Washington'), CountryList::US());
+        $this->assertEquals('400 Broad St, Seattle, Washington, US', $messyAddress->getAddress());
+    }
+
     /**
      * @dataProvider addressesDataProvider
      */
