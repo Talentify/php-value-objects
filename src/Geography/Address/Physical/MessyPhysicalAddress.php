@@ -18,7 +18,7 @@ use Talentify\ValueObject\ValueObject;
  *
  * Example:
  * - new MessyPhysicalAddress('400 Broad St, Seattle')
- * - new MessyPhysicalAddress('400 Broad St', new City('Seattle'), new Region('Washington'), CountryList::US())
+ * - new MessyPhysicalAddress('400 Broad St', new City('Seattle'), new Region('Washington', 'WA'), CountryList::US())
  */
 class MessyPhysicalAddress implements PhysicalAddress
 {
@@ -56,19 +56,9 @@ class MessyPhysicalAddress implements PhysicalAddress
         $this->messyAddress = StringUtils::convertCaseToTitle($normalized);
     }
 
-    public function getAddress() : string
+    public function getMessyAddress() : string
     {
-        $messyAddress =  $this->messyAddress;
-
-        $notNull = array_filter([$this->city, $this->region, $this->country], function ($element) {
-            return $element !== null;
-        });
-
-        if (\count($notNull) === 0) {
-            return $this->messyAddress;
-        }
-
-        return sprintf('%s, %s', $messyAddress, implode(', ', $notNull));
+        return $this->messyAddress;
     }
 
     public function getStreet() : ?Street
@@ -96,6 +86,21 @@ class MessyPhysicalAddress implements PhysicalAddress
         return $this->country;
     }
 
+    public function getAddress() : string
+    {
+        $messyAddress =  $this->messyAddress;
+
+        $notNull = array_filter([$this->city, $this->region, $this->country], function ($element) {
+            return $element !== null;
+        });
+
+        if (\count($notNull) === 0) {
+            return $this->messyAddress;
+        }
+
+        return sprintf('%s, %s', $messyAddress, implode(', ', $notNull));
+    }
+
     public function equals(?ValueObject $object) : bool
     {
         if (!$object instanceof self) {
@@ -104,7 +109,7 @@ class MessyPhysicalAddress implements PhysicalAddress
 
         return (
             (
-                strtolower($this->getAddress()) === strtolower($object->getAddress())
+                strtolower($this->getMessyAddress()) === strtolower($object->getMessyAddress())
             ) &&
             (
                 (null === $this->getCity() && null === $object->getCity()) ||
