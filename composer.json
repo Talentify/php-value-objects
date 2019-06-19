@@ -5,10 +5,11 @@
   "license": "lgpl-3.0",
   "homepage": "https://github.com/talentify/php-value-objects",
   "keywords": [
-    "value-objects", "vo", "iso 3166"
+    "value-objects", "vo", "ISO 3166", "ISO 639-1"
   ],
   "require": {
     "php": "^7.1.0",
+    "ext-json": "*",
     "ext-mbstring": "*"
   },
   "require-dev": {
