@@ -138,4 +138,38 @@ class CountryTest extends ValueObjectTestCase
             ["usa\t", 'USA'],
         ];
     }
+
+    public function testSetIsoAlpha2WhenNameIsTwoCharacters() : void
+    {
+        $country = new Country('US');
+
+        $this->assertEquals('Us', $country->getName());
+        $this->assertEquals('US', $country->getIsoAlpha2());
+        $this->assertEmpty($country->getIsoAlpha3());
+    }
+
+    public function testSetIsoAlpha3WhenNameIsTreeCharacters() : void
+    {
+        $country = new Country('USA');
+
+        $this->assertEquals('Usa', $country->getName());
+        $this->assertEquals('USA', $country->getIsoAlpha3());
+        $this->assertEmpty($country->getIsoAlpha2());
+    }
+
+    public function testSubscribeIsoAlpha2WhenNameIsTwoCharacters() : void
+    {
+        $country = new Country('US', 'ua');
+
+        $this->assertEquals('Us', $country->getName());
+        $this->assertEquals('UA', $country->getIsoAlpha2());
+    }
+
+    public function testSubscribeIsoAlpha3WhenNameIsTreeCharacters() : void
+    {
+        $country = new Country('USA', 'ua', 'uas');
+
+        $this->assertEquals('Usa', $country->getName());
+        $this->assertEquals('UAS', $country->getIsoAlpha3());
+    }
 }
