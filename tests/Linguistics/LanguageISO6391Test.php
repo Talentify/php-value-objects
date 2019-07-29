@@ -32,9 +32,17 @@ class LanguageISO6391Test extends ValueObjectTestCase
 
     public function testSetIsoCodeWhenNameIsIsoCode() : void
     {
-        $isoLanguage = new LanguageISO6391('en');
+        $isoLanguage = new LanguageISO6391('En');
 
-        $this->assertEquals('en', $isoLanguage->getName());
+        $this->assertEquals('En', $isoLanguage->getName());
+        $this->assertEquals('en', $isoLanguage->getIsoCode());
+    }
+
+    public function testNormalizedData() : void
+    {
+        $isoLanguage = new LanguageISO6391('english', 'EN');
+
+        $this->assertEquals('English', $isoLanguage->getName());
         $this->assertEquals('en', $isoLanguage->getIsoCode());
     }
 

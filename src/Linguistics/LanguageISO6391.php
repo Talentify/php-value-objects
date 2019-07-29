@@ -37,10 +37,10 @@ final class LanguageISO6391 implements JsonSerializable, ValueObject
         }
 
         if (strlen($normalized) === 2) {
-            $this->isoCode = $normalized;
+            $this->setIsoCode($normalized);
         }
 
-        $this->name = $normalized;
+        $this->name = StringUtils::convertCaseToTitle($normalized);
     }
 
     public function setIsoCode(?string $isoCode) : void
@@ -54,7 +54,7 @@ final class LanguageISO6391 implements JsonSerializable, ValueObject
             throw new InvalidArgumentException("The value '$isoCode' is not a valid language iso-code");
         }
 
-        $this->isoCode = $normalized;
+        $this->isoCode = StringUtils::convertCaseToLower($normalized);
     }
 
     public function getName() : string

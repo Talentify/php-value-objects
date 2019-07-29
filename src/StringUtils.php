@@ -44,4 +44,9 @@ class StringUtils
     {
         return mb_convert_case($value, MB_CASE_UPPER, 'UTF-8');
     }
+
+    public static function convertCaseToLower(string $value) : string
+    {
+        return mb_convert_case($value, MB_CASE_LOWER, 'UTF-8');
+    }
 }
