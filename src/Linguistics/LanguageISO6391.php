@@ -29,7 +29,7 @@ final class LanguageISO6391 implements JsonSerializable, ValueObject
         $this->setIsoCode($isoCode);
     }
 
-    public function setName(string $name) : void
+    private function setName(string $name) : void
     {
         $normalized = StringUtils::removeSpaces($name);
         if (empty($normalized) || strlen($normalized) < 2) {
@@ -43,7 +43,7 @@ final class LanguageISO6391 implements JsonSerializable, ValueObject
         $this->name = StringUtils::convertCaseToTitle($normalized);
     }
 
-    public function setIsoCode(?string $isoCode) : void
+    private function setIsoCode(?string $isoCode) : void
     {
         if ($isoCode === null) {
             return;
