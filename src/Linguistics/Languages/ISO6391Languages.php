@@ -19,7 +19,7 @@ class ISO6391Languages implements Languages
     /**
      * Map of known languages indexed by code.
      *
-     * @var array
+     * @var mixed[]|null
      */
     private static $languages;
 
