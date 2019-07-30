@@ -43,6 +43,14 @@ class Country implements AddressElement
             throw new InvalidArgumentException(sprintf('The value "%s" is not a valid country name.', $name));
         }
 
+        if (strlen($normalized) === 2) {
+            $this->setIsoAlpha2($normalized);
+        }
+
+        if (strlen($normalized) === 3) {
+            $this->setIsoAlpha3($normalized);
+        }
+
         $this->name = StringUtils::convertCaseToTitle($normalized);
     }
 
