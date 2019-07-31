@@ -20,4 +20,9 @@ class CountryList
     {
         return new Country('United States Of America', 'US', 'USA');
     }
+
+    public static function ES() : Country
+    {
+        return new Country('Spain', 'ES', 'ESP');
+    }
 }
