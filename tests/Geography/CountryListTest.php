@@ -31,7 +31,7 @@ class CountryListTest extends TestCase
         return [
             [CountryList::BR(), ['Brazil', 'BR', 'BRA']],
             [CountryList::US(), ['United States Of America', 'US', 'USA']],
-            [CountryList::US(), ['Spain', 'ES', 'ESP']],
+            [CountryList::ES(), ['Spain', 'ES', 'ESP']],
         ];
     }
 }
