@@ -11,16 +11,43 @@ use Talentify\ValueObject\ValueObjectTestCase;
 
 class MessyPhysicalAddressTest extends ValueObjectTestCase
 {
-    public function testWillGetFormattedAddress() : void
+    /**
+     * @dataProvider formattedAddressDataProvider
+     */
+    public function testWillGetFormattedAddress(MessyPhysicalAddress $messyAddress, string $expected) : void
     {
-        $messyAddress = new MessyPhysicalAddress('400 broad St, seattle');
-        $this->assertEquals('400 Broad St, Seattle', $messyAddress->getAddress());
+        $this->assertEquals($expected, $messyAddress->getAddress());
+    }
 
-        $messyAddress = new MessyPhysicalAddress('washington', null, new Region('king county'));
-        $this->assertEquals('Washington, King County', $messyAddress->getAddress());
-
-        $messyAddress = new MessyPhysicalAddress('400 broad st', new City('Seattle'), new Region('Washington'), CountryList::US());
-        $this->assertEquals('400 Broad St, Seattle, Washington, US', $messyAddress->getAddress());
+    public function formattedAddressDataProvider() : array
+    {
+        return [
+            [
+                new MessyPhysicalAddress('400 broad St, seattle'),
+                '400 Broad St, Seattle'
+            ],
+            [
+                new MessyPhysicalAddress('washington', null, new Region('king county')),
+                'Washington, King County'
+            ],
+            [
+                new MessyPhysicalAddress(
+                    '400 broad st',
+                    new City('Seattle'),
+                    new Region('Washington'),
+                    CountryList::US()
+                ),
+                '400 Broad St, Seattle, Washington, US'
+            ],
+            [
+                new MessyPhysicalAddress('São Paulo, SP', new City('São Paulo'), new Region('SP')),
+                'São Paulo, Sp',
+            ],
+            [
+                new MessyPhysicalAddress('Morristown, Nj', new City('Morristown'), new Region('NJ')),
+                'Morristown, Nj',
+            ]
+        ];
     }
 
     /**
