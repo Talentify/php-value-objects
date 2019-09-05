@@ -96,7 +96,12 @@ class Street implements AddressElement
 
     public function getFormatted() : string
     {
-        return sprintf('%s %s, %s', $this->getName(), $this->getNumber(), $this->getOtherIdentifiers());
+        $firstPart = sprintf('%s %s', $this->getNumber(), $this->getName());
+        if ($this->getOtherIdentifiers()) {
+            return $firstPart . ', ' . $this->getOtherIdentifiers();
+        }
+
+        return $firstPart;
     }
 
     public function __toString() : string
