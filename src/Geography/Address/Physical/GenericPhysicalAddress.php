@@ -117,13 +117,19 @@ class GenericPhysicalAddress implements PhysicalAddress
 
         $street     = $this->getStreet() ? $this->getStreet()->getFormatted() : '';
         $city       = $this->getCity() ? $this->getCity()->getFormatted() : '';
-        $region     = $this->getRegion() ? $this->getRegion()->getFormatted() : '';
+        $region     = $this->getRegion() ? $this->getRegion()->__toString() : '';
         $postalCode = $this->getPostalCode() ? $this->getPostalCode()->getFormatted() : '';
-        $country    = $this->getCountry() ? $this->getCountry()->getFormatted() : '';
+        $country    = $this->getCountry() ? $this->getCountry()->__toString() : '';
 
-        $formatted = sprintf(
-            '%s, %s, %s, %s %s', $street, $city, $region, $postalCode, $country
-        );
+        $values = [$street, $city, $region, $postalCode, $country];
+        $nonEmptyValues = [];
+        foreach ($values as $value) {
+            if($value !== ''){
+                $nonEmptyValues[] = $value;
+            }
+        }
+
+        $formatted = implode(', ', $nonEmptyValues);
 
         return StringUtils::trimSpacesWisely($formatted);
     }

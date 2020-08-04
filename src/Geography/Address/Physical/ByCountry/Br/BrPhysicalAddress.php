@@ -167,13 +167,19 @@ final class BrPhysicalAddress implements PhysicalAddress
 
         $street       = $this->getStreet() ? $this->getStreet()->getFormatted() : '';
         $municipality = $this->getMunicipality() ? $this->getMunicipality()->getFormatted() : '';
-        $state        = $this->getState() ? $this->getState()->getFormatted() : '';
+        $state        = $this->getState() ? $this->getState()->__toString() : '';
         $postalCode   = $this->getPostalCode() ? $this->getPostalCode()->getFormatted() : '';
-        $country      = $this->getCountry() ? $this->getCountry()->getFormatted() : '';
+        $country      = $this->getCountry() ? $this->getCountry()->__toString() : '';
 
-        $formatted = sprintf(
-            '%s. %s, %s, %s %s', $street, $municipality, $state, $postalCode, $country
-        );
+        $values = [$street, $municipality, $state, $postalCode, $country];
+        $nonEmptyValues = [];
+        foreach ($values as $value) {
+            if($value !== ''){
+                $nonEmptyValues[] = $value;
+            }
+        }
+
+        $formatted = implode(', ', $nonEmptyValues);
 
         return StringUtils::trimSpacesWisely($formatted);
     }
