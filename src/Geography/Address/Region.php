@@ -94,6 +94,10 @@ class Region implements AddressElement
 
     public function __toString() : string
     {
+        if ($this->isoAlpha2 !== null) {
+            return strtoupper($this->isoAlpha2);
+        }
+
         return $this->name;
     }
 }

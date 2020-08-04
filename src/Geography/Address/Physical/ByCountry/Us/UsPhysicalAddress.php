@@ -175,22 +175,22 @@ final class UsPhysicalAddress implements PhysicalAddress
             return $this->formattedAddress;
         }
 
-        $street     = $this->getStreet() ? $this->getStreet()
-                                                ->getFormatted() : '';
-        $city       = $this->getCity() ? $this->getCity()
-                                              ->getFormatted() : '';
-        $county     = $this->getCounty() ? $this->getCounty()
-                                                ->getFormatted() : '';
-        $state      = $this->getState() ? $this->getState()
-                                               ->getFormatted() : '';
-        $postalCode = $this->getPostalCode() ? $this->getPostalCode()
-                                                    ->getFormatted() : '';
-        $country    = $this->getCountry() ? $this->getCountry()
-                                                 ->getFormatted() : '';
+        $street     = $this->getStreet() ? $this->getStreet()->getFormatted() : '';
+        $city       = $this->getCity() ? $this->getCity()->getFormatted() : '';
+        $county     = $this->getCounty() ? $this->getCounty()->getFormatted() : '';
+        $state      = $this->getState() ? $this->getState()->__toString() : '';
+        $postalCode = $this->getPostalCode() ? $this->getPostalCode()->getFormatted() : '';
+        $country    = $this->getCountry() ? $this->getCountry()->__toString() : '';
 
-        $formatted = sprintf(
-            '%s, %s, %s, %s %s', $street, $city, $state, $postalCode, $country
-        );
+        $values = [$street, $city, $state, $postalCode, $country];
+        $nonEmptyValues = [];
+        foreach ($values as $value) {
+            if($value !== ''){
+                $nonEmptyValues[] = $value;
+            }
+        }
+
+        $formatted = implode(', ', $nonEmptyValues);
 
         return StringUtils::trimSpacesWisely($formatted);
     }
