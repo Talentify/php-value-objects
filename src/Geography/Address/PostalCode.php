@@ -41,7 +41,7 @@ class PostalCode implements AddressElement
 
     public function equals(?ValueObject $object) : bool
     {
-        if (! $object instanceof self) {
+        if (!$object instanceof self) {
             return false;
         }
 
@@ -56,5 +56,12 @@ class PostalCode implements AddressElement
     public function __toString() : string
     {
         return $this->value;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'value' => $this->value,
+        ];
     }
 }

@@ -37,7 +37,7 @@ class City implements AddressElement
 
     public function equals(?ValueObject $object) : bool
     {
-        if (! $object instanceof self) {
+        if (!$object instanceof self) {
             return false;
         }
 
@@ -52,5 +52,12 @@ class City implements AddressElement
     public function __toString() : string
     {
         return $this->name;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'name' => $this->name,
+        ];
     }
 }
