@@ -53,4 +53,11 @@ class District implements AddressElement
     {
         return $this->name;
     }
+
+    public function jsonSerialize()
+    {
+        return [
+            'name'      => $this->name,
+        ];
+    }
 }

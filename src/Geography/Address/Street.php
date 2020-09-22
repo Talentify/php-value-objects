@@ -108,4 +108,13 @@ class Street implements AddressElement
     {
         return $this->name;
     }
+
+    public function jsonSerialize()
+    {
+        return [
+            'name'            => $this->name,
+            'number'          => $this->number,
+            'otherIdentifier' => $this->otherIdentifiers,
+        ];
+    }
 }

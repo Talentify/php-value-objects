@@ -7,6 +7,7 @@ namespace Talentify\ValueObject\Geography\Address;
 use InvalidArgumentException;
 use Talentify\ValueObject\StringUtils;
 use Talentify\ValueObject\ValueObject;
+
 use function strlen;
 
 class Country implements AddressElement
@@ -136,6 +137,16 @@ class Country implements AddressElement
         if ($this->isoAlpha3 !== null) {
             return strtoupper($this->isoAlpha3);
         }
+
         return $this->name;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'name'      => $this->name,
+            'isoAlpha2' => $this->isoAlpha2,
+            'isoAlpha3' => $this->isoAlpha3,
+        ];
     }
 }

@@ -100,4 +100,12 @@ class Region implements AddressElement
 
         return $this->name;
     }
+
+    public function jsonSerialize()
+    {
+        return [
+            'name'      => $this->name,
+            'isoAlpha2' => $this->isoAlpha2,
+        ];
+    }
 }
