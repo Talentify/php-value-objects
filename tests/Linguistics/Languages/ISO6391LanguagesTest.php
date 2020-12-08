@@ -18,7 +18,7 @@ class ISO6391LanguagesTest extends TestCase
             $results[] = $item;
         }
 
-        $this->assertCount(3, $results);
+        $this->assertCount(4, $results);
         $this->assertTrue(
             (new Language('English', 'en'))->equals($results[0])
         );
