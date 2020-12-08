@@ -25,4 +25,9 @@ class CountryList
     {
         return new Country('Spain', 'ES', 'ESP');
     }
+
+    public static function FR() : Country
+    {
+        return new Country('France', 'FR', 'FRA');
+    }
 }

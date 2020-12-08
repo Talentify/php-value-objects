@@ -15,4 +15,8 @@ return [
         'name' => 'Portuguese',
         'code' => 'pt',
     ],
+    'fr' => [
+        'name' => 'French',
+        'code' => 'fr',
+    ],
 ];
