@@ -49,4 +49,9 @@ class StringUtils
     {
         return mb_convert_case($value, MB_CASE_LOWER, 'UTF-8');
     }
+
+    public static function countCharacters(string $value) : int
+    {
+        return strlen($value);
+    }
 }
