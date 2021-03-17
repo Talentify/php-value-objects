@@ -7,3 +7,13 @@ services:
       - "./:/usr/src/app"
     working_dir: "/usr/src/app/"
     user: ${CURRENT_UID:-1000}
+  php-fpm:
+      build: ./docker/php-fpm
+      container_name: php-fpm
+      working_dir: /application
+      volumes:
+          - .:/application
+          - ./docker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+          - ./docker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/php-fpm/conf.d/99-overrides.ini
+      ports:
+          - 8090:80
