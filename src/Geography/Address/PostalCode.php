@@ -24,7 +24,7 @@ class PostalCode implements AddressElement
         $this->setValue($value);
     }
 
-    public function setValue(string $value) : void
+    protected function setValue(string $value) : void
     {
         $normalized = StringUtils::trimSpacesWisely($value);
         if (empty($normalized)) {

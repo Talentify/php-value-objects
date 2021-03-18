@@ -12,11 +12,11 @@ use Talentify\ValueObject\StringUtils;
  */
 class ZipCode extends PostalCode
 {
-    public function setValue(string $value): void
+    protected function setValue(string $value): void
     {
         $value = StringUtils::trimSpacesWisely($value);
         $changedValue = StringUtils::removeNonWordCharacters($value);
-        $characters = StringUtils::countCharacters($changedValue);
+        $characters = strlen($changedValue);
 
         if ($characters == 4) {
             $value = '0' . $value;
