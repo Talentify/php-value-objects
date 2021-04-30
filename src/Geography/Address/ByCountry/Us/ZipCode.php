@@ -23,7 +23,7 @@ class ZipCode extends PostalCode
             $characters++;
         }
 
-        if (empty($value) || $characters != 5 && $characters != 9 && ctype_digit($value)) {
+        if (empty($value) || ctype_digit($value) !== true || ($characters != 5 && $characters != 9)) {
             throw new \InvalidArgumentException(sprintf('The value "%s" is not a valid postal code.', $value));
         }
 
