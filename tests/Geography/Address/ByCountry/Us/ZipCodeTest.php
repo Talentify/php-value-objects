@@ -44,7 +44,10 @@ class ZipCodeTest extends ValueObjectTestCase
         return [
             ['', 'The value "" is not a valid postal code.'],
             ["\t\r\n", "The value \"\t\r\n\" is not a valid postal code."],
-            ['235-895', 'The value "235895" is not a valid postal code.']
+            ['235-895', 'The value "235895" is not a valid postal code.'],
+            ['2A5-8E5', 'The value "2A5-8E5" is not a valid postal code.'],
+            ['TEST', 'The value "TEST" is not a valid postal code.'],
+            ['test', 'The value "test" is not a valid postal code.'],
         ];
     }
 }
