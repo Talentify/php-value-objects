@@ -131,7 +131,7 @@ class GenericPhysicalAddress implements PhysicalAddress
 
         $formatted = implode(', ', $nonEmptyValues);
 
-        return StringUtils::trimSpacesWisely($formatted);
+        return StringUtils::trimSpacesWisely($formatted) ?? '';
     }
 
     public function __toString() : string
