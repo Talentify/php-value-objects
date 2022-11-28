@@ -8,7 +8,7 @@
     "value-objects", "vo", "ISO 3166", "ISO 639-1"
   ],
   "require": {
-    "php": "^7.1.0",
+    "php": "^7.1.0 || ^8",
     "ext-json": "*",
     "ext-mbstring": "*"
   },
