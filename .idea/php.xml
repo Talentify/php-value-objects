@@ -2,7 +2,7 @@
 <project version="4">
   <component name="MessDetector">
     <phpmd_settings>
-      <MessDetectorConfiguration max_messages_per_file="100" tool_path="$USER_HOME$/.config/composer/vendor/bin/phpmd" />
+      <MessDetectorConfiguration tool_path="$USER_HOME$/.config/composer/vendor/bin/phpmd" />
     </phpmd_settings>
   </component>
   <component name="PhpCodeSniffer">
@@ -46,12 +46,12 @@
   <component name="PhpInterpreters">
     <interpreters>
       <interpreter id="eb7ea19d-674b-46b6-adf7-2495cd88339b" name="php-value-objects/docker-compose.yml" home="docker-compose://DATA" debugger_id="php.debugger.XDebug">
-        <remote_data DOCKER_ACCOUNT_NAME="Docker - unix socket" DOCKER_COMPOSE_SERVICE_NAME="app" DOCKER_REMOTE_PROJECT_PATH="/opt/project" INTERPRETER_PATH="php" HELPERS_PATH="/opt/.phpstorm_helpers" INITIALIZED="false" VALID="true" RUN_AS_ROOT_VIA_SUDO="false">
+        <remote_data INTERPRETER_PATH="php" HELPERS_PATH="/opt/.phpstorm_helpers" INITIALIZED="false" VALID="true" RUN_AS_ROOT_VIA_SUDO="false" DOCKER_ACCOUNT_NAME="Docker - unix socket" DOCKER_COMPOSE_SERVICE_NAME="app" DOCKER_REMOTE_PROJECT_PATH="/opt/project">
+          <type_data command="RUN" />
           <dockerComposeConfigurationPaths>
             <item value="$PROJECT_DIR$/docker-compose.yml" />
           </dockerComposeConfigurationPaths>
           <envs />
-          <type_data command="RUN" />
         </remote_data>
       </interpreter>
     </interpreters>
@@ -105,11 +105,11 @@
       </interpreter>
     </phpInfoCache>
   </component>
-  <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />
   <component name="PhpUnit">
     <phpunit_settings>
-      <phpunit_by_interpreter interpreter_id="eb7ea19d-674b-46b6-adf7-2495cd88339b" load_method="CUSTOM_LOADER" custom_loader_path="/usr/src/app/vendor/autoload.php" phpunit_phar_path="" />
-      <PhpUnitSettings load_method="CUSTOM_LOADER" configuration_file_path="$PROJECT_DIR$/phpunit.xml.dist" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" use_configuration_file="true" />
+      <phpunit_by_interpreter interpreter_id="eb7ea19d-674b-46b6-adf7-2495cd88339b" custom_loader_path="/usr/src/app/vendor/autoload.php" phpunit_phar_path="" />
+      <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/phpunit.xml.dist" custom_loader_path="$PROJECT_DIR$/vendor/autoload.php" use_configuration_file="true" />
     </phpunit_settings>
   </component>
 </project>

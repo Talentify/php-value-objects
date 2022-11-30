@@ -58,7 +58,7 @@ class PostalCode implements AddressElement
         return $this->value;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize() : mixed
     {
         return [
             'value' => $this->value,

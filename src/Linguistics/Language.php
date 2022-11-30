@@ -58,10 +58,8 @@ final class Language implements JsonSerializable, ValueObject
 
     /**
      * {@inheritdoc}
-     *
-     * @return mixed[]
      */
-    public function jsonSerialize() : array
+    public function jsonSerialize() : mixed
     {
         return [
             'name' => $this->name,
